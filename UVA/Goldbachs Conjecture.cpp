@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define pi          acos(-1.0)
+#define nl          '\n'
+
+///Library
+#define mem(a,b)    memset(a,b,sizeof(a))
+#define all(a)      a.begin(),a.end()
+#define Sort(x)     sort(x.begin(),x.end())
+#define Reverse(x)  reverse(x.begin(),x.end())
+#define SortA(ar,s) sort(ar,ar+s)
+#define SortD(ar,s) sort(ar,ar+s,greater<int>())
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define sq(x)       (x)*(x)
+
+#define min3(a,b,c)        min(a,min(b,c))
+#define min4(a,b,c,d)      min(a,min(b,min(c,d)))
+#define max3(a,b,c)        max(a,max(b,c))
+#define max4(a,b,c,d)      max(a,max(b,max(c,d)))
+#define ABS(x)             ((x)<0?-(x):(x))
+#define pb                 push_back
+#define mod                1000000007
+#define end                printf("\n")
+#define yes                printf("YES\n")
+#define no                 printf("NO\n")
+
+///data type
+typedef long long int ll;
+typedef unsigned long long int  llu;
+
+ll prime(ll x)
+{
+    if(x < 2)
+        return 0;
+    if(x == 2)
+        return 1;
+    if(x%2 == 0)
+        return 0;
+    ll root = sqrt(x);
+    for(ll i=3; i<=root; i+=2)
+    {
+        if(x%i == 0)
+            return 0;
+    }
+    return 1;
+}
+
+int main()
+{
+    int n;
+    while(cin>>n)
+    {
+        if(n==0)
+            break;
+
+        int a=0,b=0,ans1,ans2;
+        bool ok=false;
+        for(int i=3; i<n; i+=2)
+        {
+            a=i;
+            b=n-i;
+            if(prime(a) && prime(b) && a+b==n)
+            {
+                ans1=a;
+                ans2=b;
+                ok=true;
+                break;
+            }
+            else continue;
+        }
+        if(ok)
+            cout<<n<<" = "<<ans1<<" + "<<ans2<<nl;
+        else cout<<"Goldbach's conjecture is wrong."<<nl;
+
+    }
+    return 0;
+}
